@@ -22,7 +22,13 @@ const ExpenseItem = ({ expense }: ExpenseItemProps) => {
 
     return (
         <ListGroupItem className="d-flex justify-content-between align-items-center">
-            <span>{expense.description} - ${expense.amount} ({expense.category})</span>
+            <div>
+                <span>{expense.description} - ${expense.amount} ({expense.category})</span>
+                <br />
+                <small className="text-muted">
+                    Date: {expense.date ? new Date(expense.date).toLocaleDateString() : 'N/A'}
+                </small>
+            </div>
             <div>
                 <Button variant="warning" onClick={handleEdit} className="me-2">Edit</Button>
                 <Button variant="danger" onClick={handleDelete}>Delete</Button>

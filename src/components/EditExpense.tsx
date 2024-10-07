@@ -4,7 +4,11 @@ import { editExpense } from '../redux/expenseReducer';
 import { RootState } from '../redux/store';
 import { Expense } from '../types/expenseTypes';
 import { Form, Button, Row, Col } from 'react-bootstrap';
+import DatePicker from 'react-datepicker';
+import { Typeahead } from 'react-bootstrap-typeahead';
 import { useNavigate } from 'react-router-dom';
+
+const categories = ['Food', 'Transportation', 'Entertainment', 'Health', 'Shopping', 'Utilities', 'Rent', 'Other'];
 
 interface EditExpenseProps {
     id: number;
@@ -20,6 +24,7 @@ const EditExpense = ({ id }: EditExpenseProps) => {
         description: '',
         amount: 0,
         category: '',
+        date: new Date(),
     });
 
     useEffect(() => {
@@ -30,7 +35,7 @@ const EditExpense = ({ id }: EditExpenseProps) => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (formData.description && formData.amount && formData.category) {
+        if (formData.description && formData.amount && formData.category && formData.date) {
             dispatch(editExpense({ ...formData, id } as Expense));
             navigate('/');
         }
@@ -43,7 +48,7 @@ const EditExpense = ({ id }: EditExpenseProps) => {
     return (
         <Form onSubmit={handleSubmit} className="p-3">
             <Row>
-                <Col md={4}>
+                <Col md={3}>
                     <Form.Group controlId="description">
                         <Form.Label>Description</Form.Label>
                         <Form.Control
@@ -55,7 +60,7 @@ const EditExpense = ({ id }: EditExpenseProps) => {
                         />
                     </Form.Group>
                 </Col>
-                <Col md={4}>
+                <Col md={2}>
                     <Form.Group controlId="amount">
                         <Form.Label>Amount</Form.Label>
                         <Form.Control
@@ -67,16 +72,31 @@ const EditExpense = ({ id }: EditExpenseProps) => {
                         />
                     </Form.Group>
                 </Col>
-                <Col md={4}>
+                <Col md={3}>
                     <Form.Group controlId="category">
                         <Form.Label>Category</Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Category"
-                            value={formData.category}
-                            onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                            required
+                        <Typeahead
+                            id="category"
+                            onChange={(selected) => setFormData({ ...formData, category: selected[0] as string || '' })}
+                            options={categories}
+                            placeholder="Choose a category..."
+                            selected={formData.category ? [formData.category] : []}
+                            clearButton
                         />
+                    </Form.Group>
+                </Col>
+                <Col md={4}>
+                    <Form.Group controlId="date">
+                        <Form.Label>Date</Form.Label>
+                        <div className="d-flex align-items-center">
+                            <DatePicker
+                                selected={formData.date}
+                                onChange={(date: Date | null) => setFormData({ ...formData, date: date || new Date() })}
+                                className="form-control"
+                                dateFormat="MMMM d, yyyy"
+                                required
+                            />
+                        </div>
                     </Form.Group>
                 </Col>
             </Row>
