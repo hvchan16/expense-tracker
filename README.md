@@ -1,46 +1,80 @@
-# Getting Started with Create React App
+# Expense Tracker Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple, user-friendly expense tracker application built with **React**, **Redux**, and **TypeScript**, allowing users to manage and track expenses. This application provides features for adding, editing, and deleting expenses, as well as data visualization through a dashboard with category-based expense distribution.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+- [Setup Instructions](#setup-instructions)
+- [Running the Application](#running-the-application)
+- [Testing](#testing)
+- [Assumptions and Optional Features](#assumptions-and-optional-features)
+- [Contributing](#contributing)
+- [License](#license)
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **Add, Edit, and Delete Expenses**: Manage individual expenses with ease.
+- **Date Picker**: Easily select dates when adding or editing expenses.
+- **Auto-complete for Categories**: Auto-suggest common expense categories.
+- **Expense Dashboard**: View a pie chart breakdown of expenses by category.
+- **Responsive UI**: Uses Bootstrap for a mobile-friendly layout.
+- **Unit Testing**: Ensures component functionality with Jest and React Testing Library.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Technologies Used
 
-### `npm test`
+- **React**: JavaScript library for building the user interface.
+- **Redux**: State management library for handling the application state.
+- **TypeScript**: Typed JavaScript for improved code quality and readability.
+- **React Bootstrap**: UI framework for building responsive, mobile-first components.
+- **React Date Picker**: Component for selecting dates.
+- **React Bootstrap Typeahead**: Component for auto-complete functionality.
+- **Jest**: JavaScript testing framework.
+- **React Testing Library**: Library for testing React components.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting Started
 
-### `npm run build`
+To get a local copy of the project up and running, follow these steps.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Node.js** and **npm**: Download and install from [Node.js](https://nodejs.org/).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Setup Instructions
 
-### `npm run eject`
+1. **Clone the repository**:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+   ```bash
+   git clone https://github.com/your-username/expense-tracker.git
+   cd expense-tracker
+   ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Running the Application
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. **Start the development server**:
 
-## Learn More
+   ```bash
+   npm start
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   This command will start the application on [http://localhost:3000](http://localhost:3000).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. **Build the application for production**:
+   ```bash
+   npm run build
+   ```
+   This command will compile the application for production into the `build` directory.
+
+## Assumptions and Optional Features
+
+- **Date Parsing**: The date is saved as a `Date` object or a parsable date string. Ensure dates are formatted in a consistent manner.
+- **Expense Deletion**: Once an expense is deleted, it cannot be restored. Ensure confirmation before deleting important data.
+- **Category Auto-complete**: The application uses predefined categories for the auto-complete feature. You can add more categories as needed by editing the `categories` array in `AddExpense` and `EditExpense` components.
+- **Data Persistence**: The application currently saves expenses in the Redux state. For persistent data, integrate with a backend service or local storage.
